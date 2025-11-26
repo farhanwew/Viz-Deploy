@@ -1,0 +1,85 @@
+Saya ingin mengeneate sebuah data dummy dari mahasiswa S1 Teknik informatika ITS
+
+Jadi kami berencana untuk mengenerate data dari semua mahasiswa dari tahun pertama hingga Mahasiswa tahun terakhir (keemapat)
+dan mahasiswa yang belum lulus
+
+**jadi kami berencana untuk men-generate data dengan karakteristik data sebagai berikut**: 
+ 
+ 0   kode_mhs    : kode mahasiswa atau disebut NRP. Jadi pola dari NRP nya yaitu 5025(tahun jurusan)1(sesuai_absen)
+ contoh mahasiswa angakatan 2023 --> 5025231001, 5025231002, ..., 5025231301 
+ contoh mahasiswa angakatan 2024 --> 5025241001, 5025241002, ..., 5025241301 
+ contoh mahasiswa angakatan 2025 --> 5025251001, 5025251002, ..., 5025251301 
+ dan NRP ini unique
+
+ 1   nama_prodi  : nama prodi disini , teknik informatika semua pastinya   
+ 2   id_smt      : Semester saat ini yang sedah ditempuh     
+ 3   kode_mk     : Kode mata kuliah (course code)   
+ 4   nama_mk     : Nama mata kuliah (course name)  
+ 5   RMK         : Matkul Tersebut masuk Rumpun mata kuliah mana (RMK), dan untuk mata kuliah yang tidak ada RMK berarti bukan mata kuliah dari Teknik Informatika ITS
+ 6   sks         : SKS mata  kuliah   
+ 7  nilai_akhir : Nilai AKhir mata kuliah rentang 1 - 100
+ 8  nilai_huruf : Nilai huruf bedasarkan nilai_akhir untuk detailnya:
+ 9 Tahun angkatan : Tahun angkatan misal 2023, 2022
+ 10 Semester_sekarang : Semester saat ini (udah pasti ganjil)
+ 11 Deskripsi Matkul : pilihan (elective) atau wajib (mandatory)
+---------------------------------
+Nilai Angka,Nilai Huruf,Keterangan
+86 - 100, A, Istimewa
+76 - 85,AB,Baik Sekali
+66 - 75,B,Baik
+61 - 65,BC,Cukup Baik
+56 - 60,C,Cukup
+41 - 55,D,Kurang
+0 - 40,E,Kurang Sekali
+---------------------------------
+
+Dan kami berencana untuk men-generate untuk angakatan 2021 hingga 2025 pada semeseter genap:
+
+tahun, semester yang sudah ditempuh
+2025 , 1 
+2024 , 1, 2, 3
+2023 , 1 , 2, 3, 4, 5
+2022 , 1, 2, 3, 4, 5, 6, 7
+2021 , 1, 2, 3, 4, 5, 6 , 7, 8, 
+
+Dan data ini dibuat seolah sudah selesai semester genap-nya.
+
+
+Untuk mata kuliah pilihan hanya bisa diambil oleh mahasiswa semester 5 dan semester 7 dan wajib diambil, tetapi untuk mata kuliahnya bebas.
+Untuk matkul pilihan yang bisa diambail tiap semesternya yaitu 2 .
+
+Untuk diasumsikan jumlah mahasiswa nya yaitu tiap angkatan ada 300 (2022 - 2025) dan mahasiwa yang belum lulus (40 orang) 
+
+untuk detail mata kuliah wajib nya ada pada table @Matkul Wajib with RMK.csv dengan detail column:
+
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 50 entries, 0 to 49
+Data columns (total 6 columns):
+ #   Column       Non-Null Count  Dtype 
+---  ------       --------------  ----- 
+ 0   Semester     50 non-null     int64 
+ 1   Code         50 non-null     object
+ 2   Course Name  50 non-null     object
+ 3   Credits      50 non-null     int64 
+ 4   Course Code  29 non-null     object
+ 5   RMK          29 non-null     object
+dtypes: int64(2), object(4)
+memory usage: 2.5+ KB
+
+untuk detail mata kuliah pilihan nya ada pada table @Matkul Pilihan with RMK.csv dengan detail column:
+
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 57 entries, 0 to 56
+Data columns (total 4 columns):
+ #   Column       Non-Null Count  Dtype 
+---  ------       --------------  ----- 
+ 0   Course Code  57 non-null     object
+ 1   Course Name  57 non-null     object
+ 2   Credit       57 non-null     int64 
+ 3   RMK          56 non-null     object
+dtypes: int64(1), object(3)
+memory usage: 1.9+ KB
+
+
+Buatkan kode generator dummy bedasrkan karakteristik tersebut:
+dan anak informatika nilainya bagus bagus kok

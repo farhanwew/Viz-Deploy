@@ -1,0 +1,50 @@
+Semester;Code;Course Name;Credits
+1;SM234101;Calculus 1;3
+1;EF234101;Fundamental Programming;4
+1;EF234102;Digital System;3
+1;EF234103;Linear Algebra;3
+1;EF234104;Database System;4
+2;EF234201;Data Structure;4
+2;EF234202;Operating System;4
+2;EF234203;Computer Organization;3
+2;EF234204;Numerical Computation;3
+2;SM234201;Calculus 2;3
+2;EW234201;Introduction to Intelligent Electrical and Informatics Technology;2
+3;EF234301;Web Programming;3
+3;EF234302;Object Oriented Programming;3
+3;EF234303;Computer Network;4
+3;EF234304;Graph Theory;3
+3;EF234305;Discrete Mathematics;3
+3;EK234201;Artificial Intelligence Concepts;3
+3;EF234307;Software Development Principles;2
+4;EF234401;Network Programming;3
+4;EF234402;Probabilistic and Statistic;3
+4;EF234403;Automata;2
+4;EF234404;Database Management;3
+4;EF234405;Algorithm Design and Analysis;3
+4;EF234406;Machine Learning;3
+4;ER234301;Software Design;3
+5;EF234501;Framework-based Programming;3
+5;EF234502;Information Security;3
+5;EF234503;Modeling and Simulation;3
+5;EF234504;Computer Graphics;3
+5;EF234505;Knowledge based Engineering;3
+5;Elective 1;Elective Course;3
+5;Elective 2;Elective Course;3
+6;UG234914;English;2
+6;UG234915;Technopreneurship;2
+6;UG23490X;Religion;2
+6;UG234913;Civics;2
+6;EF234601;Mobile Programming;3
+6;EF234602;Human and Computer Interaction;3
+6;EF234622;Capstone Project;3
+6;EF234603;Practical Work;4
+7;UG234912;Indonesian;2
+7;UG234911;Pancasila;2
+7;UG234916;Applied Technology and Digital Transformation;3
+7;EF234701;Professional Ethics;2
+7;EF234702;Undergraduate Pre-Thesis;2
+7;Elective 3;Elective Course;3
+7;Elective 4;Elective Course;3
+7;Enrichment;Enrichment Course;3
+8;EF234801;Final Project;5
