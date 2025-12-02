@@ -1,0 +1,18 @@
+Image-ref/
+
+# Dependencies
+node_modules/
+
+# Build
+dist/
+build/
+Web Dashboard/node_modules/*
+Web Dashboard/dist/*
+# Env
+.env
+.env.local
+
+# Misc
+.DS_Store
+coverage/
+.vscode/
