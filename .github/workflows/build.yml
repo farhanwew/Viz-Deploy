@@ -22,24 +22,24 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-        cache-dependency-path: 'Web Dashboard/package-lock.json'
+        cache-dependency-path: "./Web Dashboard/package-lock.json"
 
     - name: Install Dependencies
-      working-directory: ./Web Dashboard
+      working-directory: "./Web Dashboard"
       run: npm ci
 
     - name: Build
-      working-directory: ./Web Dashboard
+      working-directory: "./Web Dashboard"
       run: npm run build
 
     - name: Upload production artifact
       uses: actions/upload-artifact@v4
       with:
         name: github-pages
-        path: ./Web Dashboard/dist
+        path: "./Web Dashboard/dist"
 
     - name: Lint (Optional)
-      working-directory: ./Web Dashboard
+      working-directory: "./Web Dashboard"
       run: npm run lint --if-present
 
   deploy:
