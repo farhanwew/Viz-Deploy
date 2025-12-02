@@ -1,8 +1,8 @@
-import React, { useState, useMemo } from 'react';
-import { 
-  ArrowLeft, Search, User, FileText, Award, 
-  GraduationCap, ChevronRight, BookOpen, Bookmark, 
-  TrendingUp, CheckCircle, LayoutGrid, List
+import { useState, useMemo } from 'react';
+import {
+  ArrowLeft, Search, FileText, Award,
+  GraduationCap, ChevronRight, BookOpen, Bookmark,
+  TrendingUp, CheckCircle
 } from 'lucide-react';
 import {
   Radar,
@@ -56,7 +56,6 @@ const CompetencyDashboard = ({ onBack }) => {
   };
 
   const generateTranscript = (scores) => {
-    const gradesyp = { 85: 'A', 80: 'AB', 75: 'B', 70: 'BC', 65: 'C', 50: 'D', 0: 'E' };
     const getGrade = (score) => {
         const s = Math.max(0, Math.min(100, score + (Math.random() * 10 - 5))); // Variance
         if(s >= 86) return 'A';

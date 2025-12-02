@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import LandingPageITS from "./components/LandingPageITS";
 import PopulationDashboard from "./components/PopulationDashboard";
 import CompetencyDashboard from "./components/CompetencyDashboard";
