@@ -90,16 +90,6 @@ const LandingPage = ({ onEnterDashboard }) => {
       color: "bg-indigo-500",
       stats: "Personalized Recommendation",
       chartType: "Radar Chart (Spider Plot)"
-    },
-    {
-      id: 3,
-      title: "Prediksi Distribusi Lab",
-      subtitle: "AI-Driven Clustering",
-      desc: "Analisis cerdas menggunakan data historis nilai untuk memprediksi tren peminatan laboratorium dan mencegah penumpukan beban dosen di satu rumpun.",
-      icon: <BrainCircuit size={32} className="text-white" />,
-      color: "bg-teal-500",
-      stats: "Load Balancing Lab",
-      chartType: "Network Graph & Heatmap"
     }
   ];
 
@@ -211,7 +201,7 @@ const LandingPage = ({ onEnterDashboard }) => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
             {dashboards.map((dash) => (
               <div 
                 key={dash.id}
