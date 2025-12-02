@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
-import { 
-  Users, BookOpen, GraduationCap, AlertCircle, 
-  ArrowLeft, Filter, MoreHorizontal,
+import {
+  Users, BookOpen, GraduationCap,
+  ArrowLeft, Filter,
   TrendingUp, Award, Clock, Activity
 } from 'lucide-react';
 import { 

@@ -1,23 +1,17 @@
-import React, { useMemo, useState } from 'react';
-import { 
-  Users, 
-  Network, 
-  Search, 
-  BarChart3, 
-  Activity, 
+import React, { useState } from 'react';
+import {
+  Activity,
   GraduationCap,
   LayoutDashboard,
   ArrowRight,
   TrendingUp,
-  BrainCircuit,
   Target
 } from 'lucide-react';
 
 const LandingPage = ({ onEnterDashboard }) => {
   const [activeCard, setActiveCard] = useState(null);
-  const [stats, setStats] = useState({ totalMhs: 0, eligibleMhs: 0 });
-  const [labData, setLabData] = useState([]);
-
+  const [, setStats] = useState({});
+  
   React.useEffect(() => {
     const fetchStats = async () => {
       // Static/Mock data for Lab Distribution (always used as API doesn't support it)
@@ -32,7 +26,7 @@ const LandingPage = ({ onEnterDashboard }) => {
       const colors = ["bg-[#013880]", "bg-blue-500", "bg-teal-400", "bg-indigo-400", "bg-purple-400"];
       const icons = ["🤖", "💻", "🌐", "🎮", "📊"];
       
-      const formattedLabData = labDist.slice(0, 5).map((item, idx) => ({
+      labDist.slice(0, 5).map((item, idx) => ({
         label: item.label,
         val: `${item.percentage}%`,
         color: colors[idx % colors.length],
@@ -40,8 +34,7 @@ const LandingPage = ({ onEnterDashboard }) => {
         icon: icons[idx % icons.length]
       }));
       
-      setLabData(formattedLabData);
-
+      
       try {
         const response = await fetch('https://farwew-tc.hf.space/dashboard_summary');
         
@@ -68,8 +61,7 @@ const LandingPage = ({ onEnterDashboard }) => {
     fetchStats();
   }, []);
 
-  const { totalMhs, eligibleMhs } = stats;
-
+  
   const dashboards = [
     {
       id: 1,

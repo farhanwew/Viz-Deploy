@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import {
   ArrowLeft, Search, FileText, Award,
   GraduationCap, ChevronRight, BookOpen, Bookmark,
@@ -23,7 +23,7 @@ const CompetencyDashboard = ({ onBack }) => {
 
 
   // --- MOCK DATA GENERATOR ---
-  const rmkList = [
+  const rmkList = useMemo(() => [
     { id: "RPL", name: "Rekayasa Perangkat Lunak" },
     { id: "KCV", name: "Komputasi Cerdas Visi" },
     { id: "KBJ", name: "Komputasi Berbasis Jaringan" },
@@ -32,14 +32,14 @@ const CompetencyDashboard = ({ onBack }) => {
     { id: "MCI", name: "Manajemen Cerdas Informasi" },
     { id: "PKT", name: "Pemodelan & Komputasi Terapan" },
     { id: "ALPRO", name: "Algoritma Pemrograman" },
-  ];
+  ], []);
 
-  const rmkColors = {
+  const rmkColors = useMemo(() => ({
     "RPL": "#3b82f6", "KCV": "#10b981", "KBJ": "#06b6d4", "NETICS": "#6366f1",
     "GIGA": "#d946ef", "MCI": "#f97316", "PKT": "#ef4444", "ALPRO": "#eab308"
-  };
+  }), []);
 
-  const generateScores = (biasRMK, variance = 10) => {
+  const generateScores = useCallback((biasRMK, variance = 10) => {
     return rmkList.map(rmk => {
       let base = 75;
       if (biasRMK === rmk.id) base += 15;
@@ -53,7 +53,7 @@ const CompetencyDashboard = ({ onBack }) => {
         color: rmkColors[rmk.id]
       };
     });
-  };
+  }, [rmkList, rmkColors]);
 
   const generateTranscript = (scores) => {
     const getGrade = (score) => {
@@ -111,7 +111,7 @@ const CompetencyDashboard = ({ onBack }) => {
         });
     });
     return list;
-  }, []);
+  }, [generateScores, rmkList]);
 
   const filteredStudents = useMemo(() => {
     setVisibleStudentCount(INITIAL_DISPLAY_LIMIT); // Reset visible count on filter/search change
@@ -416,7 +416,7 @@ const CompetencyDashboard = ({ onBack }) => {
                                                 <PolarGrid gridType="polygon" stroke="#cbd5e1" />
                                                 <PolarAngleAxis 
                                                     dataKey="fullName" 
-                                                    tick={({ payload, x, y, textAnchor, stroke, radius }) => (
+                                                    tick={({ payload, x, y, textAnchor, stroke }) => (
                                                         <text x={x} y={y} textAnchor={textAnchor} stroke={stroke} fill="#475569" fontSize={10} fontWeight={600}>
                                                             {payload.value}
                                                         </text>
