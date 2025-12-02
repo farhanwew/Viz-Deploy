@@ -15,33 +15,41 @@ jobs:
         node-version: [18.x, 20.x]
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-        cache-dependency-path: "./Web Dashboard/package-lock.json"
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          cache-dependency-path: "./Web Dashboard/package-lock.json"
 
-    - name: Install Dependencies
-      working-directory: "./Web Dashboard"
-      run: npm ci
+      - name: Install Dependencies
+        working-directory: "./Web Dashboard"
+        run: npm ci
 
-    - name: Build
-      working-directory: "./Web Dashboard"
-      run: npm run build
+      - name: Build
+        working-directory: "./Web Dashboard"
+        run: npm run build
 
-    - name: Upload production artifact
-      if: matrix.node-version == '20.x'
-      uses: actions/upload-artifact@v4
-      with:
-        name: github-pages
-        path: "./Web Dashboard/dist"
+      # ZIP dist folder untuk menghindari symlink/hardlink issue
+      - name: Zip dist
+        if: matrix.node-version == '20.x'
+        working-directory: "./Web Dashboard"
+        run: zip -r dist.zip dist
 
-    - name: Lint (Optional)
-      working-directory: "./Web Dashboard"
-      run: npm run lint --if-present
+      # Upload hasil zip saja
+      - name: Upload production artifact
+        if: matrix.node-version == '20.x'
+        uses: actions/upload-artifact@v4
+        with:
+          name: github-pages
+          path: "./Web Dashboard/dist.zip"
+          if-no-files-found: error
+
+      - name: Lint (Optional)
+        working-directory: "./Web Dashboard"
+        run: npm run lint --if-present
 
 
   deploy:
@@ -63,8 +71,15 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: github-pages
-          path: ./dist
+          path: ./artifact
 
+      # Unzip artifact ke folder dist
+      - name: Unzip artifact
+        run: unzip ./artifact/dist.zip -d dist
+
+      # Deploy folder dist
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          path: './dist'
