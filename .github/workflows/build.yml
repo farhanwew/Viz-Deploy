@@ -32,20 +32,11 @@ jobs:
         working-directory: "./Web Dashboard"
         run: npm run build
 
-      # ZIP dist folder untuk menghindari symlink/hardlink issue
-      - name: Zip dist
+      - name: Upload Pages artifact
         if: matrix.node-version == '20.x'
-        working-directory: "./Web Dashboard"
-        run: zip -r dist.zip dist
-
-      # Upload hasil zip saja
-      - name: Upload production artifact
-        if: matrix.node-version == '20.x'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: github-pages
-          path: "./Web Dashboard/dist.zip"
-          if-no-files-found: error
+          path: "./Web Dashboard/dist"
 
       - name: Lint (Optional)
         working-directory: "./Web Dashboard"
@@ -64,22 +55,6 @@ jobs:
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
 
     steps:
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: github-pages
-          path: ./artifact
-
-      # Unzip artifact ke folder dist
-      - name: Unzip artifact
-        run: unzip ./artifact/dist.zip -d dist
-
-      # Deploy folder dist
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-        with:
-          path: './dist'
